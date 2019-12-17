@@ -9,6 +9,7 @@ if(file_exists($configfile)){
 }else{
   die("file doesn't exit!!");
 }
+
 ?>
 <ul>
   <?php while($row=mysqli_fetch_assoc($result)): ?>
