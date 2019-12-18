@@ -10,6 +10,6 @@ $dbconnection=mysqli_select_db($conn,$dbname);
 if($dbconnection){
   // var_dump("db connection is OK.<br>");
 }else{
-  // var_dump("db connection is fall.....<br>");
+  var_dump("db connection is fall.....<br>");
 }
 ?>

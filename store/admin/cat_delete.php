@@ -6,7 +6,7 @@ if(file_exists($fileconfig)){
   $id=$_GET['id'];
   $sql="DELETE FROM category WHERE id= $id";
   mysqli_query($conn, $sql);
-  header("location: cat-list.php");
+  header("location: cat_list.php");
 }else{
   die("file doesn't exit!!!");
   }

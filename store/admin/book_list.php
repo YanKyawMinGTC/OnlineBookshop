@@ -39,14 +39,14 @@
         <p><span>$<?php echo $row_book['price'] ?></span></p>
         <p class="card-text"><?php echo $row_book['summary']?></p>
       </div>
-      <div><a href="book_del.php?id='$row_book['id']"></a></div>
+     <a href="book_del.php?id=<?php echo $row_book['id']?>" class="btn btn-primary mb-3">Delete</a>
+     <a href="book_edit.php?id=<?php echo $row_book['id']?>" class="btn btn-primary mb-3">Update</a>
     </div>
   </div>
 </div>
   <?php endwhile; ?>
+  <a href="book_new.php " class="btn btn-primary">New Book</a>
   </div>
-
-
-
+ 
 </body>
 </html>

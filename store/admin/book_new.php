@@ -11,6 +11,11 @@
     display:block;
     margin-top: 10px;
   }
+  textarea{
+    width: 100%;
+    height:200px;
+    resize:none;
+  }
   </style>
 </head>
 <body>
@@ -51,14 +56,10 @@
     <?php endwhile; ?>
   </select>
   </div>
-  <!-- <div class="input-group-prepend mb-5">
-  <label for="cover" class="mr-3">Book's Cover</label>
-  <input type="file" name="cover" id="cover" class="input-group-text">
-  </div> -->
-
+  <div class="form-group col-md-6">
   <label for="cover">Cover</label>
- <input type="file" name="cover" id="cover">
-
+ <input type="file" name="cover" id="cover" class="mb-3">
+  </div>
 <div class="input-group">
   <input type="submit" value="Add Book" class="btn btn-primary mb-2 mr-3">
   <a href="book_list.php" class="btn btn-primary mb-2">Back to booklist</a>
@@ -66,6 +67,5 @@
 </form>
 </div>
 
-  
 </body>
 </html>
