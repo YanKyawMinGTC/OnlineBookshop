@@ -8,7 +8,7 @@ if(file_exists($fileconfig)){
   $sql = "INSERT INTO category (name, remark, created_date,
   modified_date) VALUES ('$name', '$remark', now(), now())";
   mysqli_query($conn, $sql);
-  header("location: cat_list.php");
+   header("location: cat_list.php");
 }else{
   die("file doesn't exit!!!");
   }

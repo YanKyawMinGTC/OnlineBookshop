@@ -13,7 +13,26 @@
   </style>
 </head>
 <body>
+<?php include("confs/auth.php"); ?>
   <div class="container pt-5">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+    <li class="nav-item">
+    <a class="nav-link" href="cat_list.php">Manage Categories</a>
+    </li>
+      <li class="nav-item active">
+        <a class="navbar-brand" href="book_list.php">Manage Book List</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="orders.php">Manage Order</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="logout.php">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
   <h1 class="text-primary">Book List</h1>
   <?php
   $configfile = "confs/config.php";

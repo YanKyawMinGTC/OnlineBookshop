@@ -16,6 +16,4 @@ if(file_exists($fileconfig)){
 }else{
   var_dump("config file doesn't not exit");
 }
-
   ?>
-
