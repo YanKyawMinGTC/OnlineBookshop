@@ -19,7 +19,7 @@
 <label for="password">Password</label>
 <input type="text" name="password" class="form-control" id="password">
 </div>
-<input type="submit" class="btn btn-primary" value="Admin Login">
+<input type="submit" class="btn btn-primary" value="Login">
 </form>
 </div>
 </body>

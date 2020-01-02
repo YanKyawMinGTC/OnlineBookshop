@@ -91,7 +91,7 @@ if(file_exists($fileconfig)){
                       while ($cat=mysqli_fetch_assoc($category)):?>
           <option value="<?php $cat['id'] ?>" 
                       <?php
-                        if($cat["id"]==$row["id"])echo "selected"
+                        if($cat["id"]==$row["category_id"])echo "selected"
                       ?>>
                       <?php echo $cat['name'] ?>
           </option>

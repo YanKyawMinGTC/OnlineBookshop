@@ -1,51 +1,104 @@
+
+<?php
+session_start();
+if(isset($_SESSION['admin'])){
+  var_dump("admin session start");
+}
+if(isset($_SESSION["user"])){
+  var_dump("user session start");
+}
+else{
+  die("session not have");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>
-  
-  </title>
+ 
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" >
+  <style>
+  .container{
+    margin: 0 auto;
+  }
+  textarea{
+    width: 100%;
+    height:200px;
+    resize:none;
+  }
+  i{
+    margin-right: 30px;
+    cursor:pointer;
+  }
+  </style>
 </head>
 <body>
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Book Store </title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" >
-  </head>
-  <body>
-  <div class="container">
-  <h1>Book Store</h1>
-  <a href="view_cart.php">(<?php echo $cart ?>) Books in your cart </a>
-  <a href="index.php" class="btn btn-primary">All Categories</a>
-  <?php while($row=mysqli_fetch_assoc($cats)): ?>
-  <a href="index.php?cat=<?php echo $row['id']?>">
-  <?php echo $row['name'] ?>
-  </a>
+<?php include("admin/confs/auth.php"); ?> 
+  <div class="container pt-5">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+    <li class="nav-item">
+    <a class="nav-link" href="cat_list.php">Manage Categories</a>
+    </li>
+      <li class="nav-item active">
+        <a class="navbar-brand" href="book_list.php">Manage Book List</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="orders.php">Manage Order</a>
+      </li>
+      <li class="nav-item">
+      <a class="nav-link" href="index.php">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="logout.php">Logout</a>
+      </li>
+      </ul>
+    </div>
+  </nav>
+  <h1 class="text-primary">Book List</h1>
+  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Architecto, similique assumenda quasi magnam eum numquam fugit fugiat facere vero. Odit consequatur deleniti dolorem illo magnam eveniet facere, vero a modi?</p>
+  <?php
+  $configfile = "admin/confs/config.php";
+    include($configfile);
+    $result = mysqli_query ( $conn, "
+    SELECT books.*, category.name
+    FROM books LEFT JOIN category
+    ON books.category_id = category.id
+    ORDER BY books.created_date DESC
+    ");
+    while($row_book = mysqli_fetch_assoc($result)): ?>
+     <div class="card md-3 mb-5" >
+        <div class="row no-gutters">
+          <div class="col-md-4">
+          <img src="admin/covers/<?php echo $row_book['cover']?>" alt="" style="height:200px">
+          </div>
+          <div class="col-md-8 pl-5">
+            <div class="card-body">
+              <h5 class="card-title"><?php echo $row_book['title'] ?></h5>
+              <p><i><?php echo $row_book['author']?></i></p>
+              <p><small>(in <?php echo $row_book['name']?>)</small></p>
+              <p><span>$<?php echo $row_book['price'] ?></span></p>
+              <p class="card-text"><?php echo $row_book['summary']?></p>
+            </div>
+            <?php
+            if(isset($_SESSION['admin'])): ?>
+              <a href="admin/book_del.php?id=<?php echo $row_book['id']?>" class="btn btn-primary mb-3">Delete</a>
+              <a href="admin/book_edit.php?id=<?php echo $row_book['id']?>" class="btn btn-primary mb-3">Update</a>
+            <?php endif; ?>
+            <?php
+               if(isset($_SESSION['user'])): ?> 
+              <a href="orders.php?id=<?php echo $row_book['id']?>" class ="btn btn-primary mb-3" >Add to Cart</a> 
+              <?php endif; ?> 
+          </div>
+     </div>
+     </div>
   <?php endwhile; ?>
-  <div>
- 
-  <?php while($row=mysqli_fetch_assoc('$books')): ?>
-    <div class="cover_photo">
-  <img src="admin/covers/<?php echo $row['cover'] ?>" alt="">
-  </div>
-  <a href="book_detail.php?id='<?php echo $row['id']?>"><?php echo $row['title'] ?></a>
-  <i><?php echo $row['price'] ?></i>
-  <a href="add_to_cart.php?id='<?php echo $row['id'] ?>'">
-  Add to Cart
-  </a>
-  <?php endwhile; ?>
-  <div class="footer">
-  &copy;<?php echo date['Y'] ?>. All right reserved.
-  </div>
-  </div>
-  </div>
-  </body>
-  </html>
+  <!-- for all book  -->
+  <a href="admin/book_new.php" class="btn btn-primary">Add Book</a>
+   </div>
 </body>
 </html>

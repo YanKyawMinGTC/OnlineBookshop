@@ -1,6 +1,7 @@
 <?php
   $configfile = "confs/config.php";
     include($configfile);
+
 $bookname=$_POST['title'];
 $bookauthor=$_POST['author'];
 $summary= $_POST['summary'];

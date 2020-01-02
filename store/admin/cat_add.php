@@ -2,7 +2,6 @@
 $fileconfig="confs/config.php";
 if(file_exists($fileconfig)){
   include($fileconfig);
-
   $name = $_POST['name'];
   $remark = $_POST['remark'];
   $sql = "INSERT INTO category (name, remark, created_date,

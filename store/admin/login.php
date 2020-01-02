@@ -1,15 +1,33 @@
 <?php
-session_start();
+
 $uname = $_POST['uname'];
 $pass = $_POST['password'];
-if($uname=="admin" and $pass=="123456"){
-  $_SESSION['auth']=true;
-  if(file_exists("book_list.php")){
-    var_dump(file_exists("book_list.php"));
-    header("location: book_list.php");
-    exit();
-  }
-}else{
-  header("location: index.php");
-}
+
+include("confs/config.php");
+
+$admin_table = mysqli_query($conn,"SELECT * FROM admin");
+$user_table = mysqli_query($conn,"SELECT * FROM user");
+
+while($admin = mysqli_fetch_assoc($admin_table)):
+
+    while($user = mysqli_fetch_assoc($user_table)){
+
+      if($uname == $admin['name'] && $pass == $admin['password']){
+        session_start();
+        $_SESSION["admin"] = "admin";
+        if(file_exists("orders.php")){
+          header("location: orders.php");
+        }
+      }
+      elseif($uname == $user['name'] && $pass == $user['password']){
+        session_start();
+        $_SESSION["user"] = "user";
+        if(file_exists("../index.php")){
+          header("location: ../index.php");
+        }
+        exit();
+      }
+   }
+  endwhile;
 ?>
+

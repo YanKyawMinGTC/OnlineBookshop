@@ -1,8 +1,6 @@
 <?php
-var_dump("auth run");
 session_start();
-if(!isset($_SESSION['auth'])){
+if(!isset($_SESSION['admin'])||!isset($_SESSION['user'])){
   header("location: index.php");
-  var_dump("auth session run");
   exit();
 }
