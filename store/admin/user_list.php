@@ -1,6 +1,5 @@
 <?php
 
-include("confs/auth.php"); 
 if(isset($_POST['submit_row']))
 {
   
@@ -119,7 +118,7 @@ input{
     $user_table= mysqli_query($conn,"SELECT * FROM user");
   while($user= mysqli_fetch_assoc($user_table)):?>
   <tbody>
-  <tr >
+  <tr>
       <td><input type="checkbox" class="chkbox" id="checkItem" name="check[]" value="<?php echo $user["id"]; ?>"></td>
       <td><input type="text" value="<?php echo $user['id'] ?>"></td>
       <td><input type="text" value="<?php echo $user['name'] ?>" ></td>
@@ -131,7 +130,7 @@ input{
     <?php
      $i++;
       endwhile; ?>
-    <tr >
+    <tr>
     <td><input type="button" onclick="add_row();" value="ADD User" class="btn btn-primary"></td>
     <td><input type="submit" class="btn btn-danger" name="save" value="DELETE"  onclick="this.form.action='delete_user.php';"></td>
     <td><input type="submit" class="btn btn-primary" name="edit_user" id="update()" value="Update User" onclick="this.form.action='update_user.php';"></td>
